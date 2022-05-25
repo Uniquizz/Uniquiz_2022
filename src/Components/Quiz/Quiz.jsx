@@ -22,6 +22,10 @@ class Quiz extends React.Component {
       qActive: false,
       rActive: false,
       questions: [],
+      area: [],
+      answers: [],
+      matters: [],
+      images: [],
       questionCount: 1,
       maxQuestions: 0,
       answerCounter: 0,
@@ -31,7 +35,7 @@ class Quiz extends React.Component {
 
   handleCheck(indx) {
     var rightAnswer = parseInt(
-      this.state.questions[this.state.questionCount].respuestas.rans
+      this.state.answers[this.state.questionCount].rans
     );
     switch (indx) {
       case 1:
@@ -229,15 +233,19 @@ class Quiz extends React.Component {
     var salida;
     const dbRef = firebase.database().ref();
     dbRef
-      .child('preguntas')
+      .child('quiz')
       .get()
       .then((snapshot) => {
         if (snapshot.exists()) {
           salida = snapshot.val();
           this.setState({
-            questions: salida,
+            questions: Object.values(salida.questions),
+            answers: Object.values(salida.answers),
+            images: Object.values(salida.images),
+            area: Object.values(salida.area),
+            matters: Object.values(salida.matters),
           });
-          console.log(salida);
+          console.log(this.state);
         } else {
           console.log('No data available');
         }
@@ -271,11 +279,13 @@ class Quiz extends React.Component {
               this.state.qActive &
               !this.state.rActive ? (
               <QuestionsScreen
-                onClickCheck={this.handleCheck}
-                styleInfo={this.state.styleInfo}
-                question={this.state.questions[this.state.questionCount]}
-                onClickResults={this.handleResults}
-                onClickNext={this.handleNext}
+                onClickCheck = {this.handleCheck}
+                styleInfo = {this.state.styleInfo}
+                questions = {this.state.questions[this.state.questionCount]}
+                answers = {this.state.answers[this.state.questionCount]}
+                images = {this.state.images[this.state.questionCount]}
+                onClickResults = {this.handleResults}
+                onClickNext = {this.handleNext}
               />
             ) : (
               <Results

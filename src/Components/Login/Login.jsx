@@ -24,7 +24,7 @@ library.add(faUser);
 
 class Login extends React.Component {
   state = {
-    containerClass: 'container-fluid login-container',
+    containerClass: 'login_row',
     email: '',
     password: '',
     phone: '',
@@ -32,14 +32,6 @@ class Login extends React.Component {
     login: true,
   };
 
-  switchForm = (e) => {
-    this.setState({
-      containerClass: 'container-fluid login-container sign-up-mode',
-    });
-  };
-  switchForm2 = (e) => {
-    this.setState({ containerClass: 'container-fluid login-container' });
-  };
   registrar = async () => {
     console.log('diste un click a registrar paps');
 
@@ -85,10 +77,14 @@ class Login extends React.Component {
 
   activeLogin = (e) => {
     this.setState({ login: true });
+    this.setState({containerClass: 'login_row'});
+
   };
 
   activeRegister = (e) => {
     this.setState({ login: false });
+    this.setState({containerClass: 'login_row sign-up-mode'});
+
   };
 
   handleSubmit = async (e) => {
@@ -207,7 +203,7 @@ class Login extends React.Component {
       <>
         <NavBar></NavBar>
         <div className="login_main_container">
-          <div className="login_row">
+          <div className={this.state.containerClass}>
             <div className="login_switch">
               <div className="login_switch_title" onClick={this.activeLogin}>
                 <h1>Inicia sesión</h1>
