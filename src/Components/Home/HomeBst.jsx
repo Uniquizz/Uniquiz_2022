@@ -4,6 +4,7 @@ import Rocket from '../../Images/Rocket3d.png';
 import Phone from '../../Images/phone_mockup.png';
 import Navbar from '../Navbar/Navbar';
 import Mono from '../../Images/avatar3d.png'
+import Blog from '../Blog/Blog';
 
 class Home extends React.Component {
   render() {
@@ -111,45 +112,7 @@ class Home extends React.Component {
             </div>
           </div>
 
-          <div className="section4">
-            <h3 className="h3s4">Noticias</h3>
-            <p className="ps4">¡Enetérate de lo que está pasando!</p>
-
-            <div className="Posts4">
-              <div className="cardbg">
-                <div className="cards4">
-                  <div className="imgcards4">Soy una imagen</div>
-                  <h4 className="h4card">Post</h4>
-                  <p className="pcard">
-                    This is placeholder text that our web designers put here to
-                    make sure words appear properly on your website.
-                  </p>
-                </div>
-              </div>
-
-              <div className="cardbg">
-                <div className="cards4">
-                  <div className="imgcards4">Soy una imagen</div>
-                  <h4 className="h4card">Post</h4>
-                  <p className="pcard">
-                    This is placeholder text that our web designers put here to
-                    make sure words appear properly on your website.
-                  </p>
-                </div>
-              </div>
-
-              <div className="cardbg">
-                <div className="cards4">
-                  <div className="imgcards4">Soy una imagen</div>
-                  <h4 className="h4card">Post</h4>
-                  <p className="pcard">
-                    This is placeholder text that our web designers put here to
-                    make sure words appear properly on your website.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
           <div className="metrics5">
             <div className="items">
@@ -180,6 +143,7 @@ class Home extends React.Component {
             <img src={Mono} className="marcian" alt="" />
           </div>
         </div>
+        <Blog></Blog>
       </>
     );
   }

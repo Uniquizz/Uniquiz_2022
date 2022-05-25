@@ -179,65 +179,7 @@ h3 {
 
 /*Here are the mediaquerys for section3 */
 
-/*Here start section4 */
 
-.section4 {
-  color: #f2f2f2;
-  padding: 0em 0.5em 0em 0.5em;
-  text-align: center;
-}
-
-.h3s4 {
-  font-size: 3em;
-  margin: 0.2em;
-}
-
-.ps4 {
-  font-size: 1.5em;
-}
-
-.Posts4 {
-  display: flex;
-  margin: 6em;
-  margin-top: 1.5em;
-}
-
-.cardbg {
-  background-color: #f2f2f2;
-  padding: 1em;
-  padding-top: 1.5em;
-  margin: 2em 1.5em 0em 1.5em;
-  border-radius: 5px;
-}
-
-.cards4 {
-  background-color: #ffffff;
-  padding: 0.5em;
-  text-align: left;
-}
-
-.imgcards4 {
-  width: auto;
-  background-color: #f2f2f2;
-  height: 200px;
-}
-
-.h4card {
-  color: #ff3860;
-  font-size: 1.5em;
-  font-weight: 600;
-  background-color: #ffffff;
-  padding: 1em;
-  padding: 2em 1.5em 0em 2em;
-}
-
-.pcard {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  padding: 3em;
-}
-
-/*Here are the mediaquerys for section4 */
 
 /*Here start section5 */
 
