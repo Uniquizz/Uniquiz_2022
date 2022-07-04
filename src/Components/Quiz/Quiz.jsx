@@ -4,7 +4,8 @@ import QuestionsScreen from './QuestionsScreen';
 import Results from './Results';
 import Navbar from '../Navbar/Navbar';
 import './Styles.css';
-import { firebase } from '../../firebase';
+import { database } from '../../Services/firebase';
+import { ref, child, get }  from "firebase/database";
 
 class Quiz extends React.Component {
   
@@ -231,31 +232,28 @@ class Quiz extends React.Component {
 
   componentDidMount() {
     var salida;
-    const dbRef = firebase.database().ref();
-    dbRef
-      .child('quiz')
-      .get()
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          salida = snapshot.val();
-          this.setState({
-            questions: Object.values(salida.questions),
-            answers: Object.values(salida.answers),
-            images: Object.values(salida.images),
-            area: Object.values(salida.area),
-            matters: Object.values(salida.matters),
-          });
-          console.log(this.state);
-        } else {
-          console.log('No data available');
-        }
-      })
-      .then(() => {
-        this.setState({ maxQuestions: this.state.questions.length });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+
+    const dbRef = ref(database);
+    get(child(dbRef, 'quiz')).then((snapshot) => {
+      if (snapshot.exists()) {
+        salida = snapshot.val();
+        this.setState({
+          questions: Object.values(salida.questions),
+          answers: Object.values(salida.answers),
+          images: Object.values(salida.images),
+          area: Object.values(salida.area),
+          matters: Object.values(salida.matters),
+        });
+      } else {
+        console.log("No data available");
+      }
+    })
+    .then(() => {
+      this.setState({ maxQuestions: this.state.questions.length });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   render() {

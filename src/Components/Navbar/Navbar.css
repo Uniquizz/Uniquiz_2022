@@ -67,6 +67,14 @@
 .navbar_menu_profile {
   background-color: #0f0012;
   position: absolute;
-  left: 90%;
+  right: 0;
   top: 60px;
 }
+
+.navbar_menu_profile li {
+  color: #f2f2f2;
+  margin-top: 10px;
+  padding-right: 20px;
+  list-style-type: none;
+}
+
