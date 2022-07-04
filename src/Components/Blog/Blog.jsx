@@ -1,60 +1,104 @@
-import React from 'react';
-import './Blog.css';
+import React, { useEffect, useState } from "react";
+import "./Blog.css";
 
+const urlimg = "https://blog.uniquiz.com.mx/wp-json/wp/v2/media/";
+const lastPosts =
+  "https://blog.uniquiz.com.mx/wp-json/wp/v2/posts/?_orderby&_embed=true";
+const popularPosts =
+  "https://blog.uniquiz.com.mx/wp-json/wordpress-popular-posts/v1/popular-posts/?_embed=true";
 
+function App() {
+  const [blog, setBlog] = useState(null);
+  const [popularBlog, setPopularBlog] = useState(null);
+  const [urlImg1, setUrlImg1] = useState();
+  const [urlImg2, setUrlImg2] = useState();
+  const [urlImg3, setUrlImg3] = useState();
+  useEffect(() => {
+    fetch(lastPosts)
+      .then((res) => res.json())
+      .then((data) => {
+        const blogData = data;
+        setBlog(blogData);
+      });
 
+    fetch(popularPosts)
+      .then((res) => res.json())
+      .then((data) => {
+        const popularBlogData = data;
+        setPopularBlog(popularBlogData[0]);
+      });
+  }, []);
 
-function Blog() {
-    return <div className="section4">
-        <h1>HOHO</h1>
-    <h3 className="h3s4">Noticias</h3>
-    <p className="ps4">¡Enetérate de lo que está pasando!</p>
+  useEffect(() => {
+    if (blog) {
+      fetch(urlimg + blog[blog.length - 2].featured_media)
+        .then((res) => res.json())
+        .then((data) => {
+          setUrlImg1(data.source_url);
+        });
+      fetch(urlimg + blog[blog.length - 1].featured_media)
+        .then((res) => res.json())
+        .then((data) => {
+          setUrlImg2(data.source_url);
+        });
+    }
+  }, [blog]);
 
-    <div className="Posts4">
-      <div className="cardbg">
-        <div className="cards4">
-          <div className="imgcards4">Soy una imagen</div>
-          <h4 className="h4card">Post</h4>
-          <p className="pcard">
-            This is placeholder text that our web designers put here to
-            make sure words appear properly on your website.
-          </p>
-        </div>
-      </div>
-
-      <div className="cardbg">
-        <div className="cards4">
-          <div className="imgcards4">Soy una imagen</div>
-          <h4 className="h4card">Post</h4>
-          <p className="pcard">
-            This is placeholder text that our web designers put here to
-            make sure words appear properly on your website.
-          </p>
-        </div>
-      </div>
-
-      <div className="cardbg">
-        <div className="cards4">
-          <div className="imgcards4">Soy una imagen</div>
-          <h4 className="h4card">Post</h4>
-          <p className="pcard">
-            This is placeholder text that our web designers put here to
-            make sure words appear properly on your website.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-    
-
-
-
-
-
-
+  useEffect(() => {
+    if (popularBlog) {
+      fetch(urlimg + popularBlog.featured_media)
+        .then((res) => res.json())
+        .then((data) => {
+          setUrlImg3(data.source_url);
+        });
+    }
+  }, [popularBlog]);
+  // Parrafo blog1
+  function paragraph(id) {
+    return { __html: blog[blog.length - id].excerpt.rendered };
   }
 
+  function paragraphPopular() {
+    return { __html: popularBlog.excerpt.rendered };
+  }
 
-  
-  
-  export default Blog;
+  return (
+    <div className="App">
+      {!blog ? (
+        "Cargando..."
+      ) : (
+        <div className="sec4container">
+          <div className="cardbg">
+            <h3 className="h3s4">{blog[blog.length - 2].title.rendered}</h3>
+
+            <img className="img-blog" src={urlImg1} alt="img-blog"></img>
+
+            <p dangerouslySetInnerHTML={paragraph(2)} />
+
+            <a href={blog[blog.length - 2].link}> ver más</a>
+          </div>
+          <div className="cardbg">
+            <h3>{blog[blog.length - 1].title.rendered}</h3>
+
+            <img className="img-blog" src={urlImg2} alt="img-blog"></img>
+
+            <p dangerouslySetInnerHTML={paragraph(1)} />
+
+            <a href={blog[blog.length - 1].link}> ver más</a>
+          </div>
+          <div className="cardbg">
+              <h3>{popularBlog.title.rendered}</h3>
+
+            <img className="img-blog" src={urlImg3} alt="img-blog"></img>
+
+            <p dangerouslySetInnerHTML={paragraphPopular()} />
+
+            <a href={popularBlog.link}> ver más</a>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
