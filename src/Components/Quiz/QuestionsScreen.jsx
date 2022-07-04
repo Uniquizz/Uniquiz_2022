@@ -28,13 +28,13 @@ const QuestionsScreen = (props) => {
         <div className="line-questions stick-2"></div>
         <div className="container-general-questions">
           <div className="container-questions">
-            <p className="text-question">{props.question.pregunta}</p>
+            <p className="text-question">{props.questions.pregunta}</p>
           </div>
-          <img src={Img} alt="" className="image-question" />
+          {props.images.image && <img src={Img} alt="" className="image-question" />}
         </div>
         <Questions
           styleInfo={props.styleInfo}
-          question={props.question}
+          answers={props.answers}
           onClickCheck={props.onClickCheck}
         />
         <div className="container-buttons">

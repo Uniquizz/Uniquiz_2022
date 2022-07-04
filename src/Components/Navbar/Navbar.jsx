@@ -1,12 +1,16 @@
 import React from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+
+import { checkAuth } from '../../Services/firebase';
+
 import Logo from '../../Images/UNIQUIZ.svg';
 import PP from '../../Images/PP.png';
 
 class Navbar extends React.Component {
   state = {
     profileActive: false,
+
   };
 
   handleProfile = (e) => {
@@ -16,7 +20,7 @@ class Navbar extends React.Component {
       this.setState({ profileActive: true });
     }
   };
-
+  
   render() {
     return (
       <div className="navbar_container">
@@ -63,9 +67,7 @@ class Navbar extends React.Component {
         {this.state.profileActive ? (
           <div className="navbar_menu_profile">
             <ul>
-              <li>punto uno</li>
-              <li>punto dos</li>
-              <li>punto tres</li>
+              <li>Cerrar sesión</li>
             </ul>
           </div>
         ) : null}

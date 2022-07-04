@@ -1,6 +1,7 @@
 import React from 'react';
 
 class Questions extends React.Component {
+  
   render() {
     return (
       <>
@@ -15,7 +16,7 @@ class Questions extends React.Component {
               className={this.props.styleInfo.styleAns1}
               style={{ marginRight: '5%' }}
             >
-              {this.props.question.respuestas.ans1}
+              {this.props.answers.ans1}
             </button>
 
             <button
@@ -27,7 +28,7 @@ class Questions extends React.Component {
               className={this.props.styleInfo.styleAns3}
               style={{ marginRight: '5%' }}
             >
-              {this.props.question.respuestas.ans3}
+              {this.props.answers.ans2}
             </button>
           </div>
           <div className="row-right-ans">
@@ -40,7 +41,7 @@ class Questions extends React.Component {
               className={this.props.styleInfo.styleAns2}
               style={{ marginLeft: '5%' }}
             >
-              {this.props.question.respuestas.ans2}
+              {this.props.answers.ans3}
             </button>
             <button
               type="button"
@@ -51,7 +52,7 @@ class Questions extends React.Component {
               className={this.props.styleInfo.styleAns4}
               style={{ marginLeft: '5%' }}
             >
-              {this.props.question.respuestas.ans4}
+              {this.props.answers.ans4}
             </button>
           </div>
         </div>

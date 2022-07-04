@@ -13,8 +13,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import { useNavigate } from 'react-router-dom';
 
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { firebaseApp } from '../../Services/firebase'
 
 library.add(faFacebookF);
 library.add(faEnvelope);
@@ -24,7 +23,7 @@ library.add(faUser);
 
 class Login extends React.Component {
   state = {
-    containerClass: 'container-fluid login-container',
+    containerClass: 'login_row',
     email: '',
     password: '',
     phone: '',
@@ -32,14 +31,6 @@ class Login extends React.Component {
     login: true,
   };
 
-  switchForm = (e) => {
-    this.setState({
-      containerClass: 'container-fluid login-container sign-up-mode',
-    });
-  };
-  switchForm2 = (e) => {
-    this.setState({ containerClass: 'container-fluid login-container' });
-  };
   registrar = async () => {
     console.log('diste un click a registrar paps');
 
@@ -47,23 +38,11 @@ class Login extends React.Component {
     var password = this.state.password;
     this.setState({ loading: true });
 
-    await firebase
+    await firebaseApp
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(function () {
         console.log('Registro completo');
-        /*setTimeout(() => { 
-                    var user = firebase.auth().currentUser;
-                    user.updateProfile({
-                        displayName: name,
-                    }).then(function() {
-                        console.log("se cambio el nombre a"+displayName);
-                        alert("wey sii");
-                    }).catch(function(error) {
-                        console.log("Mamo banda");
-                        alert("wey nooo");
-                    });
-                }, 2000);*/
         setTimeout(() => {
           console.log('aaa');
         }, 2000);
@@ -85,16 +64,20 @@ class Login extends React.Component {
 
   activeLogin = (e) => {
     this.setState({ login: true });
+    this.setState({containerClass: 'login_row'});
+
   };
 
   activeRegister = (e) => {
     this.setState({ login: false });
+    this.setState({containerClass: 'login_row sign-up-mode'});
+
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
     if (!this.state.login) {
-      await firebase
+      await firebaseApp
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then((userCredential) => {
@@ -111,7 +94,7 @@ class Login extends React.Component {
           // ..
         });
     } else {
-      await firebase
+      await firebaseApp
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((userCredential) => {
@@ -129,12 +112,11 @@ class Login extends React.Component {
   };
 
   LoginGoo = (e) => {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase
+    var provider = new firebaseApp.auth.GoogleAuthProvider();
+    firebaseApp
       .auth()
       .signInWithPopup(provider)
       .then((result) => {
-        /** @type {firebase.auth.OAuthCredential} */
         var credential = result.credential;
 
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -158,12 +140,11 @@ class Login extends React.Component {
   };
 
   LoginFb = (e) => {
-    var provider = new firebase.auth.FacebookAuthProvider();
-    firebase
+    var provider = new firebaseApp.auth.FacebookAuthProvider();
+    firebaseApp
       .auth()
       .signInWithPopup(provider)
       .then((result) => {
-        /** @type {firebase.auth.OAuthCredential} */
         var credential = result.credential;
 
         // The signed-in user info.
@@ -188,7 +169,7 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
@@ -207,7 +188,7 @@ class Login extends React.Component {
       <>
         <NavBar></NavBar>
         <div className="login_main_container">
-          <div className="login_row">
+          <div className={this.state.containerClass}>
             <div className="login_switch">
               <div className="login_switch_title" onClick={this.activeLogin}>
                 <h1>Inicia sesión</h1>
