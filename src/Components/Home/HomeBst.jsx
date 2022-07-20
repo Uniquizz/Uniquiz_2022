@@ -31,7 +31,7 @@ class Home extends React.Component {
                 <p className="textocardHero2"> 
                 "más de 100 estudiantes con ingreso éxitoso...""
                 </p>
-                <a class="linkMore" href="">Más...</a>
+                <a className="linkMore" href="">Más...</a>
             </div>
 
 
@@ -42,7 +42,7 @@ class Home extends React.Component {
               <p className="textocardHero2"> 
               "La app que te ayuda a estudiar donde sea...""
               </p>
-              <a class="linkMore" href="">Más...</a>
+              <a className="linkMore" href="">Más...</a>
             </div>
 
 
@@ -53,7 +53,7 @@ class Home extends React.Component {
                 <p className="textocardHero2"> 
                 "Una app creada por estudiantes para estudiantes...""
                 </p>
-                <a class="linkMore" href="">Más...</a></div>
+                <a className="linkMore" href="">Más...</a></div>
 
 
 
@@ -62,7 +62,7 @@ class Home extends React.Component {
                 <p className="textocardHero2"> 
                 "Ni creas que te pasamos las respuestas..."
                 </p>
-                <a class="linkMore" href="">Más...</a></div>
+                <a className="linkMore" href="">Más...</a></div>
 
 
 
@@ -71,7 +71,7 @@ class Home extends React.Component {
                 <p className="textocardHero2"> 
                 "Los mejores Hacks para que pases..""
                 </p>
-                <a class="linkMore" href="">Más...</a>
+                <a className="linkMore" href="">Más...</a>
                 </div>
 
 
@@ -82,7 +82,7 @@ class Home extends React.Component {
                 <p className="textocardHero2"> 
                 "Más de 500 preguntas sacadas de  Examen"
                 </p>
-                <a class="linkMore" href="">Más...</a>
+                <a className="linkMore" href="">Más...</a>
 
               
             </div>
@@ -92,7 +92,7 @@ class Home extends React.Component {
                 <p className="textocardHero2"> 
                 "Mide tu aprendizaje..""
                 </p>
-                <a class="linkMore" href="">Más...</a>
+                <a className="linkMore" href="">Más...</a>
 
             </div>
           </div>
@@ -108,7 +108,7 @@ class Home extends React.Component {
                
               </p>
 
-              <button class="bubbly-button">Quizate!</button>
+              <button className="bubbly-button">Quizate!</button>
             </div>
           </div>
 
@@ -132,9 +132,9 @@ class Home extends React.Component {
           </div>
 
           <div className="section6">
-            <p className="contents3">
-            <h3>"Un gran paso para el hombre..."</h3>
 
+            <p className="contents3">
+          <h3>"Un gran paso para el hombre..."</h3>
               Aterriza en la universidad de tus sueños
               <br /> Estudia con nosotros de la forma más practica 
              totalmente gratis{' '}

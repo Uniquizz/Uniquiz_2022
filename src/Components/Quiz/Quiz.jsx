@@ -4,6 +4,8 @@ import QuestionsScreen from './QuestionsScreen';
 import Results from './Results';
 import Navbar from '../Navbar/Navbar';
 import './Styles.css';
+import { Navigate } from 'react-router-dom';
+import { getAuth, onAuthStateChanged  } from 'firebase/auth';
 import { database } from '../../Services/firebase';
 import { ref, child, get }  from "firebase/database";
 
@@ -30,9 +32,12 @@ class Quiz extends React.Component {
       questionCount: 1,
       maxQuestions: 0,
       answerCounter: 0,
+      username: null,
+      loading: true,
     };
     this.handleCheck = this.handleCheck.bind(this);
   }
+
 
   handleCheck(indx) {
     var rightAnswer = parseInt(
@@ -231,8 +236,21 @@ class Quiz extends React.Component {
   };
 
   componentDidMount() {
-    var salida;
+    const auth = getAuth();
+    this.setState({loading: true});
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        this.setState({username: user.displayName});
+        this.setState({loading: false})
+        // ...
+      } else {
+        this.setState({loading: false})
+      }
+    });
 
+    var salida;
     const dbRef = ref(database);
     get(child(dbRef, 'quiz')).then((snapshot) => {
       if (snapshot.exists()) {
@@ -259,6 +277,9 @@ class Quiz extends React.Component {
   render() {
     return (
       <>
+        {!this.state.loading && !this.state.username && (
+          <Navigate to="/login" replace={true} />
+        )}
         {this.state.qActive || this.state.rActive ? null : <Navbar />}
         <div className="main-welcome">
           {this.state.qActive || this.state.rActive ? (
@@ -272,7 +293,7 @@ class Quiz extends React.Component {
           )}
           <div className="main-card">
             {this.state.cActive & !this.state.qActive & !this.state.rActive ? (
-              <CustomQuiz onClick={this.handleStart} />
+              <CustomQuiz username={this.state.username} onClick={this.handleStart} />
             ) : !this.state.cActive &
               this.state.qActive &
               !this.state.rActive ? (

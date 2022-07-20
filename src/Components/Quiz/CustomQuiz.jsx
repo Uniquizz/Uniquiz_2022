@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import PP from '../../Images/PP.png';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
 
 const optionsArea = [
   { value: '1', label: 'Área 1', name: 'area' },
@@ -56,8 +56,7 @@ class CustomQuiz extends React.Component {
       <>
         <div className="card-welcome">
           <div className="row-left-welcome">
-            <img className="photo-welcome" src={PP} alt="Profile" />
-            <h3 className="user-name-welcome">Israel Albarrán</h3>
+            <h3 className="user-name-welcome">{this.props.username}</h3>
             <p className="text-welcome">
               Ponte en forma y diviertete con nuestro banco de preguntas.
             </p>

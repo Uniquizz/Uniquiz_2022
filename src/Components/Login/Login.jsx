@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-
+import { Navigate } from 'react-router-dom';
 import NavBar from '../Navbar/Navbar.jsx';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -11,9 +11,15 @@ import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-import { useNavigate } from 'react-router-dom';
-
-import { firebaseApp } from '../../Services/firebase'
+import { 
+  getAuth, 
+  signInWithPopup, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  GoogleAuthProvider,
+  FacebookAuthProvider,
+  onAuthStateChanged
+} from "firebase/auth";
 
 library.add(faFacebookF);
 library.add(faEnvelope);
@@ -29,7 +35,9 @@ class Login extends React.Component {
     phone: '',
     name: '',
     login: true,
+    user: false,
   };
+  
 
   registrar = async () => {
     console.log('diste un click a registrar paps');
@@ -38,21 +46,21 @@ class Login extends React.Component {
     var password = this.state.password;
     this.setState({ loading: true });
 
-    await firebaseApp
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(function () {
-        console.log('Registro completo');
-        setTimeout(() => {
-          console.log('aaa');
-        }, 2000);
-      })
-      .catch(function (error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
-        alert(errorMessage);
-      });
+    const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(function () {
+      console.log('Registro completo');
+      setTimeout(() => {
+        console.log('aaa');
+      }, 2000);
+    })
+    .catch(function (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      alert(errorMessage);
+    });
   };
 
   handleChange = (e) => {
@@ -75,117 +83,108 @@ class Login extends React.Component {
   };
 
   handleSubmit = async (e) => {
+
+    var email = this.state.email;
+    var password = this.state.password;
+    
+    const auth = getAuth();
     e.preventDefault();
     if (!this.state.login) {
-      await firebaseApp
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((userCredential) => {
-          // Signed in
-          var user = userCredential.user;
-          console.log(user);
-          this.props.navigate('/');
-          // ...
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorMessage);
-          // ..
-        });
+      createUserWithEmailAndPassword(auth, email, password)
+      .then(function () {
+        console.log('Registro completo');
+        setTimeout(() => {
+          console.log('aaa');
+        }, 2000);
+      })
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        alert(errorMessage);
+      });
     } else {
-      await firebaseApp
-        .auth()
-        .signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then((userCredential) => {
-          // Signed in
-          var user = userCredential.user;
-          console.log(user);
-          this.props.navigate('/');
-          // ...
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-        });
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
     }
   };
 
   LoginGoo = (e) => {
-    var provider = new firebaseApp.auth.GoogleAuthProvider();
-    firebaseApp
-      .auth()
-      .signInWithPopup(provider)
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
       .then((result) => {
-        var credential = result.credential;
-
         // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = credential.accessToken;
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
         // The signed-in user info.
-        var user = result.user;
-        console.log(user);
-        this.props.navigate('/home');
+        const user = result.user;
         // ...
-      })
-      .catch((error) => {
+      }).catch((error) => {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        const errorCode = error.code;
+        const errorMessage = error.message;
         // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
         // ...
-      });
+    });
   };
 
   LoginFb = (e) => {
-    var provider = new firebaseApp.auth.FacebookAuthProvider();
-    firebaseApp
-      .auth()
-      .signInWithPopup(provider)
+    const auth = getAuth();
+    const provider = new FacebookAuthProvider();
+    signInWithPopup(auth, provider)
       .then((result) => {
-        var credential = result.credential;
-
         // The signed-in user info.
-        var user = result.user;
-        console.log(user);
+        const user = result.user;
+    
         // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        var accessToken = credential.accessToken;
-
+        const credential = FacebookAuthProvider.credentialFromResult(result);
+        const accessToken = credential.accessToken;
+    
         // ...
       })
       .catch((error) => {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        const errorCode = error.code;
+        const errorMessage = error.message;
         // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = FacebookAuthProvider.credentialFromError(error);
+    
         // ...
       });
   };
 
   componentDidMount() {
-    firebaseApp.auth().onAuthStateChanged((user) => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        var uid = user.uid;
         console.log(user);
-        // ...
+        this.setState({user: true});
       } else {
-        // User is signed out
-        // ...
       }
     });
   }
 
   render() {
+    let {user} = this.state
     return (
       <>
+        {user && (
+          <Navigate to="/" replace={true} />
+        )}
         <NavBar></NavBar>
         <div className="login_main_container">
           <div className={this.state.containerClass}>
@@ -262,7 +261,7 @@ class Login extends React.Component {
                   required
                 />
               </label>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', margin: 0, }}>
                 {!this.state.login ? (
                   <label
                     style={{
@@ -329,9 +328,4 @@ class Login extends React.Component {
   }
 }
 
-function WithNavigate(props) {
-  let navigate = useNavigate();
-  return <Login {...props} navigate={navigate} />;
-}
-
-export default WithNavigate;
+export default Login;
