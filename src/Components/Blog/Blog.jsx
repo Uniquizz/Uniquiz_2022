@@ -13,6 +13,9 @@ function App() {
   const [urlImg1, setUrlImg1] = useState();
   const [urlImg2, setUrlImg2] = useState();
   const [urlImg3, setUrlImg3] = useState();
+  const [loading, setLoanding] = useState(true);
+
+  console.log(blog);
   useEffect(() => {
     fetch(lastPosts)
       .then((res) => res.json())
@@ -35,12 +38,15 @@ function App() {
         .then((res) => res.json())
         .then((data) => {
           setUrlImg1(data.source_url);
+
         });
       fetch(urlimg + blog[blog.length - 1].featured_media)
         .then((res) => res.json())
         .then((data) => {
           setUrlImg2(data.source_url);
+          setLoanding(false);
         });
+
     }
   }, [blog]);
 
@@ -64,7 +70,7 @@ function App() {
 
   return (
     <div className="App">
-      {!blog ? (
+      {loading ? (
         "Cargando..."
       ) : (
         <div className="sec4container">
