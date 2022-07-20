@@ -1,12 +1,83 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .sec4container{
-  display: flex;
+  display: grid;
   padding: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 5.5em;
 }
 
 .cardbg{
-  padding: 1.5em;
+ 
   background-color: #f2f2f2;
-  margin: 1.5em;
+ margin: .5em 0em; 
+  padding: 1.5em 1em;
+}
+
+.cardbg2{
+  background-color: #fff;
+  padding: .5em;
+  height: 98%;
 }
 
 
+.imgcontainer{
+  width: 100% ;
+  
+
+  
+}
+
+.img-blog{
+  width:100%;
+  height: 230px;
+  object-fit: cover;
+
+
+}
+
+
+
+.h3Blog{
+  text-align: left;
+  padding: .2em;
+  color: #e94267;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  margin-bottom: .2em;
+  max-height: 25px;
+  overflow: hidden;
+  
+}
+
+.cardbg p{
+  color: #000;
+  text-align: left;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1.5em;
+  max-height: 98.5px;
+  overflow: hidden;
+
+}
+
+.linkBlog{
+  color: #f2f2f2;
+  background-color:#19011D ;
+  text-decoration: none;
+justify-content: left;
+font-family: 'Montserrat', sans-serif;
+font-size: 18px;
+padding:  .8em 1em;
+border-radius: 16px;
+float: left;
+margin-bottom: 1.5em;
+font-weight: 600;
+
+
+}
+
+.linkBlog:hover{
+  color: #e94267;
+}

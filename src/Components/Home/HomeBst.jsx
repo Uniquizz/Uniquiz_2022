@@ -130,6 +130,7 @@ class Home extends React.Component {
               <h4 className="hs5">Usuarios Registrados</h4>
             </div>
           </div>
+          <Blog></Blog>
 
           <div className="section6">
 
@@ -143,7 +144,7 @@ class Home extends React.Component {
             <img src={Mono} className="marcian" alt="" />
           </div>
         </div>
-        <Blog></Blog>
+        
       </>
     );
   }

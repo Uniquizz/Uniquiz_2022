@@ -69,31 +69,65 @@ function App() {
       ) : (
         <div className="sec4container">
           <div className="cardbg">
-            <h3 className="h3s4">{blog[blog.length - 2].title.rendered}</h3>
+            <div className="cardbg2">
+           
 
-            <img className="img-blog" src={urlImg1} alt="img-blog"></img>
+<div className="imgcontainer">
+<img className="img-blog" src={urlImg1} alt="img-blog"></img>
+
+</div>
+
+<h3 className="h3Blog">{blog[blog.length - 2].title.rendered}</h3>
+           
 
             <p dangerouslySetInnerHTML={paragraph(2)} />
 
-            <a href={blog[blog.length - 2].link}> ver más</a>
+            <a className="linkBlog" href={blog[blog.length - 2].link}>  Más...</a>
+
+            </div>
+
+          </div>
+
+
+
+          <div className="cardbg">
+            <div className="cardbg2">
+
+           
+
+<div className="imgcontainer">
+<img className="img-blog" src={urlImg2} alt="img-blog"></img>
+
+</div>
+<h3 className="h3Blog">{blog[blog.length - 1].title.rendered}</h3>
+
+
+
+<p dangerouslySetInnerHTML={paragraph(1)} />
+
+<a className="linkBlog" href={blog[blog.length - 1].link}>Más...</a>
+
+            </div>
+   
           </div>
           <div className="cardbg">
-            <h3>{blog[blog.length - 1].title.rendered}</h3>
+            <div className="cardbg2">
+            
 
-            <img className="img-blog" src={urlImg2} alt="img-blog"></img>
+<div className="imgcontainer">
+  
+<img className="img-blog" src={urlImg3} alt="img-blog"></img>
 
-            <p dangerouslySetInnerHTML={paragraph(1)} />
+</div>
+<h3 className="h3Blog">{popularBlog.title.rendered}</h3>
 
-            <a href={blog[blog.length - 1].link}> ver más</a>
-          </div>
-          <div className="cardbg">
-              <h3>{popularBlog.title.rendered}</h3>
 
-            <img className="img-blog" src={urlImg3} alt="img-blog"></img>
+<p dangerouslySetInnerHTML={paragraphPopular()} />
 
-            <p dangerouslySetInnerHTML={paragraphPopular()} />
+<a className="linkBlog" href={popularBlog.link}>Más...</a>
 
-            <a href={popularBlog.link}> ver más</a>
+            </div>
+
           </div>
         </div>
       )}
