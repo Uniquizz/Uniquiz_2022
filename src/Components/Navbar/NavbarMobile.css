@@ -1,0 +1,28 @@
+.NavbarMobileContainer{
+    background-color:#0f0012 ;
+    color: #f2f2f2;
+    height: 70px;
+    position: fixed;
+    border: none;
+    z-index: 999;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.navbar_logo_container{
+    padding: .5em 0em ;
+    width: 20px;
+}
+
+
+.menuiconcontainer{
+    padding: 1.5em 1em;
+  
+}
+.menupic{
+    width: 32px;
+    height: auto;
+
+}

@@ -3,6 +3,7 @@ import './home.css';
 import Rocket from '../../Images/Rocket3d.png';
 import Phone from '../../Images/phone_mockup.png';
 import Navbar from '../Navbar/Navbar';
+import NavbarMobile from '../Navbar/NavbarMobile';
 import Mono from '../../Images/avatar3d.png'
 import Blog from '../Blog/Blog';
 import {Link} from 'react-router-dom'
@@ -12,6 +13,8 @@ class Home extends React.Component {
     return (
       <>
         <Navbar />
+        <NavbarMobile/>
+
         <div className="Home">
           <div className="Hero1">
             <p className="pvalor">
