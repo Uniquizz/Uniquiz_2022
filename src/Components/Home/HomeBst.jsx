@@ -5,6 +5,7 @@ import Phone from '../../Images/phone_mockup.png';
 import Navbar from '../Navbar/Navbar';
 import Mono from '../../Images/avatar3d.png'
 import Blog from '../Blog/Blog';
+import {Link} from 'react-router-dom'
 
 class Home extends React.Component {
   render() {
@@ -108,7 +109,7 @@ class Home extends React.Component {
                
               </p>
 
-              <button className="bubbly-button">Quizate!</button>
+              <Link to="/Quiz" className="bubbly-button">Quizate!</Link>
             </div>
           </div>
 

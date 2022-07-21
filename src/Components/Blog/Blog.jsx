@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Blog.css";
 
+
 const urlimg = "https://blog.uniquiz.com.mx/wp-json/wp/v2/media/";
 const lastPosts =
   "https://blog.uniquiz.com.mx/wp-json/wp/v2/posts/?_orderby&_embed=true";
@@ -116,6 +117,7 @@ function App() {
             </div>
    
           </div>
+         
           <div className="cardbg">
             <div className="cardbg2">
             
@@ -135,6 +137,10 @@ function App() {
             </div>
 
           </div>
+
+
+         
+    
         </div>
       )}
     </div>
