@@ -40,9 +40,9 @@ const Navbar = () =>{
           </div>
           <div className="navbar_menu_container">
             <div>
-              <Link className="navbar_item" to={'/'}>
-                Blog
-              </Link>
+              <a className="navbar_item" href='https://blog.uniquiz.com.mx/' >
+                Noticias
+              </a>
             </div>
             <div>
               <Link className="navbar_item" to={'/'}>
@@ -54,22 +54,24 @@ const Navbar = () =>{
                 Testimonios
               </Link>
             </div>
-            <div>
-              <Link className="navbar_item" to={'/Quiz'}>
-                Quiz
-              </Link>
-            </div>
+            
             <div>
               <Link className="navbar_item" to={'/'}>
                 Contacto
               </Link>
             </div>
+
+            
           </div>
-          <button className="navbar_btn">
-            <Link className="navbar_btn_item" to={'/'}>
-              Cursos
-            </Link>
-          </button>
+              
+              <button className="navbar_btn">
+              <Link className="navbar_btn_item" to={'/Quiz'}>
+                Quiz
+              </Link>
+              </button>
+          
+
+          
           <div className="navbar_image" onClick={()=>setProfileActive(!profileActive)}>
             <img className="navbar_img" src={PP} alt="" />
           </div>
@@ -77,6 +79,8 @@ const Navbar = () =>{
             <div className="navbar_menu_profile">
               <ul>
                 {usuario ? <li onClick={handleLogOut}>Cerrar sesión</li>
+            
+
                 : <li><Link to="/login">Iniciar sesión</Link></li>}
               </ul>
             </div>
