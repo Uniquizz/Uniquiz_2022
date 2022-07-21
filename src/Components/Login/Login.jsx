@@ -183,7 +183,7 @@ class Login extends React.Component {
     return (
       <>
         {user && (
-          <Navigate to="/" replace={true} />
+          <Navigate to="/quiz" replace={true} />
         )}
         <NavBar></NavBar>
         <div className="login_main_container">

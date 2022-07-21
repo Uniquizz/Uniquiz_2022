@@ -240,6 +240,7 @@ class Quiz extends React.Component {
     this.setState({loading: true});
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log(user);
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         this.setState({username: user.displayName});
@@ -298,6 +299,7 @@ class Quiz extends React.Component {
               this.state.qActive &
               !this.state.rActive ? (
               <QuestionsScreen
+                username={this.state.username}
                 onClickCheck = {this.handleCheck}
                 styleInfo = {this.state.styleInfo}
                 questions = {this.state.questions[this.state.questionCount]}
@@ -308,6 +310,7 @@ class Quiz extends React.Component {
               />
             ) : (
               <Results
+                username={this.state.username}
                 onClickReturn={this.handleReturn}
                 totalAnswers={this.state.answerCounter}
                 totalQuestions={this.state.maxQuestions - 1}

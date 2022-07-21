@@ -7,7 +7,7 @@ class Results extends React.Component {
     return (
       <>
         <div className="main-results">
-          <h4 className="title-results">Israel Albarrán</h4>
+          <h4 className="title-results">{this.props.username}</h4>
           <div className="line-results"></div>
           <p className="hint-results">Aún tienes remedio</p>
           <div className="container-results">

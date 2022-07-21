@@ -22,7 +22,7 @@ const QuestionsScreen = (props) => {
     return (
       <div className="main-questions">
         <div className="title-questions stick">
-          <h4>Israel Albarrán</h4>
+          <h4>{props.username}</h4>
           <h4 className="text-time">{minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h4>
         </div>
         <div className="line-questions stick-2"></div>
