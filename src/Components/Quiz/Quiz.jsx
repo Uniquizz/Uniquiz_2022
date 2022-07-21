@@ -14,13 +14,6 @@ class Quiz extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      styleInfo: {
-        buttonDisabled: false,
-        styleAns1: 'container-ans',
-        styleAns2: 'container-ans',
-        styleAns3: 'container-ans',
-        styleAns4: 'container-ans',
-      },
       cActive: true,
       qActive: false,
       rActive: false,
@@ -29,158 +22,31 @@ class Quiz extends React.Component {
       answers: [],
       matters: [],
       images: [],
+      singleAnswers: [],
       questionCount: 1,
       maxQuestions: 0,
       answerCounter: 0,
       username: null,
       loading: true,
+      correct: undefined,
     };
     this.handleCheck = this.handleCheck.bind(this);
   }
 
 
   handleCheck(indx) {
-    var rightAnswer = parseInt(
-      this.state.answers[this.state.questionCount].rans
-    );
-    switch (indx) {
-      case 1:
-        if (rightAnswer === 1) {
-          this.setState({
-            styleInfo: {
-              ...this.state.styleInfo,
-              styleAns1: 'container-ans correct-ans',
-              buttonDisabled: true,
-            },
-            answerCounter: this.state.answerCounter + 1,
-          });
-        } else {
-          this.setState(
-            {
-              styleInfo: {
-                ...this.state.styleInfo,
-                styleAns1: 'container-ans wrong-ans',
-                buttonDisabled: true,
-              },
-            },
-            () => this.correctQuestion(rightAnswer)
-          );
-        }
-        break;
-      case 2:
-        if (rightAnswer === 2) {
-          this.setState({
-            styleInfo: {
-              ...this.state.styleInfo,
-              styleAns2: 'container-ans correct-ans',
-              buttonDisabled: true,
-            },
-            answerCounter: this.state.answerCounter + 1,
-          });
-        } else {
-          this.setState(
-            {
-              styleInfo: {
-                ...this.state.styleInfo,
-                styleAns2: 'container-ans wrong-ans',
-                buttonDisabled: true,
-              },
-            },
-            () => this.correctQuestion(rightAnswer)
-          );
-        }
-        break;
-      case 3:
-        if (rightAnswer === 3) {
-          this.setState({
-            styleInfo: {
-              ...this.state.styleInfo,
-              styleAns3: 'container-ans correct-ans',
-              buttonDisabled: true,
-            },
-            answerCounter: this.state.answerCounter + 1,
-          });
-        } else {
-          this.setState(
-            {
-              styleInfo: {
-                ...this.state.styleInfo,
-                styleAns3: 'container-ans wrong-ans',
-                buttonDisabled: true,
-              },
-            },
-            () => this.correctQuestion(rightAnswer)
-          );
-        }
-        break;
-      case 4:
-        if (rightAnswer === 4) {
-          this.setState({
-            styleInfo: {
-              ...this.state.styleInfo,
-              styleAns4: 'container-ans correct-ans',
-              buttonDisabled: true,
-            },
-            answerCounter: this.state.answerCounter + 1,
-          });
-        } else {
-          this.setState(
-            {
-              styleInfo: {
-                ...this.state.styleInfo,
-                styleAns4: 'container-ans wrong-ans',
-                buttonDisabled: true,
-              },
-            },
-            () => this.correctQuestion(rightAnswer)
-          );
-        }
-        break;
-      default:
-        console.log('algo salio mal');
-        break;
+    if (indx === 4) {
+      this.setState({
+        answerCounter: this.state.answerCounter + 1,
+        correct: true,
+      });
     }
-  }
-
-  correctQuestion(rightAnswer) {
-    switch (rightAnswer) {
-      case 1:
-        this.setState({
-          styleInfo: {
-            ...this.state.styleInfo,
-            styleAns1: 'container-ans correct-ans',
-          },
-        });
-        break;
-      case 2:
-        this.setState({
-          styleInfo: {
-            ...this.state.styleInfo,
-            styleAns2: 'container-ans correct-ans',
-          },
-        });
-        break;
-      case 3:
-        this.setState({
-          styleInfo: {
-            ...this.state.styleInfo,
-            styleAns3: 'container-ans correct-ans',
-          },
-        });
-        break;
-      case 4:
-        this.setState({
-          styleInfo: {
-            ...this.state.styleInfo,
-            styleAns4: 'container-ans correct-ans',
-          },
-        });
-        break;
-      default:
-        console.log('algo salio mal');
-        break;
+    else{
+      this.setState({
+        correct: false,
+      })
     }
-  }
+  };
 
   handleStart = (e) => {
     this.setState({
@@ -201,13 +67,7 @@ class Quiz extends React.Component {
   handleReturn = (e) => {
     this.setState({
       questionCount: 1,
-      styleInfo: {
-        buttonDisabled: false,
-        styleAns1: 'container-ans',
-        styleAns2: 'container-ans',
-        styleAns3: 'container-ans',
-        styleAns4: 'container-ans',
-      },
+      correct: undefined,
       cActive: true,
       qActive: false,
       rActive: false,
@@ -215,16 +75,11 @@ class Quiz extends React.Component {
   };
 
   handleNext = (e) => {
+    console.log(this.state.answerCounter);
     if (this.state.questionCount + 1 < this.state.maxQuestions) {
       this.setState({
         questionCount: this.state.questionCount + 1,
-        styleInfo: {
-          buttonDisabled: false,
-          styleAns1: 'container-ans',
-          styleAns2: 'container-ans',
-          styleAns3: 'container-ans',
-          styleAns4: 'container-ans',
-        },
+        correct: undefined,
       });
     } else {
       this.setState({
@@ -302,11 +157,13 @@ class Quiz extends React.Component {
                 username={this.state.username}
                 onClickCheck = {this.handleCheck}
                 styleInfo = {this.state.styleInfo}
+                correct = {this.state.correct}
                 questions = {this.state.questions[this.state.questionCount]}
                 answers = {this.state.answers[this.state.questionCount]}
                 images = {this.state.images[this.state.questionCount]}
                 onClickResults = {this.handleResults}
                 onClickNext = {this.handleNext}
+                questionCount = {this.state.questionCount}
               />
             ) : (
               <Results

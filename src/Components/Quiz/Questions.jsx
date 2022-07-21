@@ -1,64 +1,32 @@
 import React from 'react';
 
-class Questions extends React.Component {
-  
-  render() {
-    return (
-      <>
-        <div className="container-answers">
-          <div className="row-left-ans">
-            <button
-              type="button"
-              disabled={this.props.styleInfo.buttonDisabled}
-              onClick={() => {
-                this.props.onClickCheck(1);
-              }}
-              className={this.props.styleInfo.styleAns1}
-              style={{ marginRight: '5%' }}
-            >
-              {this.props.answers.ans1}
-            </button>
+export const SingleAnswer = ({answer, ind, style, button, onClickCheck}) =>{
+  return <button
+      type="button"
+      disabled={button}
+      onClick={() => {
+        onClickCheck(ind);
+      }}
+      className={style}
+      style={{ marginRight: '5%' }}
+    >
+    {answer}
+  </button>
+}
 
-            <button
-              type="button"
-              disabled={this.props.styleInfo.buttonDisabled}
-              onClick={() => {
-                this.props.onClickCheck(3);
-              }}
-              className={this.props.styleInfo.styleAns3}
-              style={{ marginRight: '5%' }}
-            >
-              {this.props.answers.ans2}
-            </button>
-          </div>
-          <div className="row-right-ans">
-            <button
-              type="button"
-              disabled={this.props.styleInfo.buttonDisabled}
-              onClick={() => {
-                this.props.onClickCheck(2);
-              }}
-              className={this.props.styleInfo.styleAns2}
-              style={{ marginLeft: '5%' }}
-            >
-              {this.props.answers.ans3}
-            </button>
-            <button
-              type="button"
-              disabled={this.props.styleInfo.buttonDisabled}
-              onClick={() => {
-                this.props.onClickCheck(4);
-              }}
-              className={this.props.styleInfo.styleAns4}
-              style={{ marginLeft: '5%' }}
-            >
-              {this.props.answers.ans4}
-            </button>
-          </div>
-        </div>
-      </>
-    );
-  }
+
+const Questions = ({answers, onClickCheck}) =>{
+
+  return <>
+    {answers.map((el)=><SingleAnswer
+      answer={el.answer}
+      onClickCheck={onClickCheck}
+      style={el.style}
+      ind={el.ind}
+      key={el.ind}
+      button={el.button}
+    />)}
+  </>
 }
 
 export default Questions;
