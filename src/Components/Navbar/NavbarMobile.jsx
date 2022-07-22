@@ -42,8 +42,8 @@ useEffect(() => {
               <img className="navbar_logo" src={Logo} alt="logo-uniquiz" />
             </Link>
 
-
-            <div className="containermobile2">
+<div className="btnsmobile">
+<div className="containermobile2">
               <div className='menuconcontainer' onClick={()=>setmenuActive(!menuActive)}>
                 <img  className="menupic" src={Menupic} alt="" />
               </div>
@@ -73,6 +73,9 @@ useEffect(() => {
         <li><Link to="/">Contacto</Link></li>
         <li><Link to="/quiz">Quiz</Link></li>
       </ol>
+
+</div>
+ 
     </div>
   )
 }

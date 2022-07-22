@@ -90,3 +90,22 @@
 .line_active {
   border-bottom: 1px solid #f2f2f2;
 }
+
+
+@media only screen and (max-width: 680px) {
+  .login_row {
+    width: 90%;
+  }
+
+
+  .login_switch_title:nth-child(2){
+  
+  }
+
+  .login_social_container {
+   margin-left: 1em;
+   padding-top: 1.5em;
+   gap: 16px;
+  }
+
+}

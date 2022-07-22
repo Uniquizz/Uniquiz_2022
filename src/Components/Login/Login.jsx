@@ -261,7 +261,7 @@ class Login extends React.Component {
                   required
                 />
               </label>
-              <div style={{ display: 'flex', justifyContent: 'space-between', margin: 0, }}>
+              <div style={{ display: 'block', justifyContent: 'space-between', margin: 0, }}>
                 {!this.state.login ? (
                   <label
                     style={{
