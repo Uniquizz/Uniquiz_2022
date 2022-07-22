@@ -64,11 +64,9 @@ const Navbar = () =>{
             
           </div>
               
-              <button className="navbar_btn">
-              <Link className="navbar_btn_item" to={'/Quiz'}>
+              <Link className="navbar_btn navbar_btn_item" to={'/Quiz'}>
                 Quiz
               </Link>
-              </button>
           
           <div className="navbar_image" onClick={()=>setProfileActive(!profileActive)}>
             <img className="navbar_img" src={usuario ? usuario.photoURL : PP} alt="" />

@@ -64,6 +64,8 @@
   border: 1px solid #dbdbdb;
 }
 .navbar_btn_item {
+  display: flex;
+  justify-content: center;
   text-decoration: none;
   color: #ff3860;
 }
@@ -72,7 +74,7 @@
 }
 
 .navbar_menu_profile {
-  background-color: #0f0012;
+  background-color: #000;
   position: absolute;
   right: 0;
   top: 60px;
@@ -80,7 +82,7 @@
 
 .navbar_menu_profile li {
   color: #f2f2f2;
-  margin-top: 10px;
+  margin: 10px 0;
   padding-right: 20px;
   list-style-type: none;
   cursor: pointer;

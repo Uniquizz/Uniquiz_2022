@@ -2,13 +2,19 @@
 
 /*Css general*/
 
-.main-card {
-  padding-bottom: 25px;
-}
 
 .main-welcome {
   min-height: 100vh;
   background-color: #19011d;
+  display:  flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-card {
+  width: 100%;
+  max-width: 1600px;
+  padding-bottom: 25px;
 }
 
 .title-welcome {
@@ -30,10 +36,9 @@
 
 /*css Welcome*/
 .card-welcome {
+  width: 100%;
   background-color: #3a0a42;
   min-height: 75vh;
-  margin-left: 10%;
-  margin-right: 10%;
   border-radius: 20pt;
   display: flex;
 }
