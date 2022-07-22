@@ -13,11 +13,12 @@
 
 .title-welcome {
   font-family: 'Poppins', sans-serif;
-  color: #ff3860;
+  color: #ffffff;
   text-align: center;
   padding-top: 70px;
   font-size: 8vh;
   font-weight: 300;
+  text-transform: uppercase;
 }
 .title-welcome-nopad {
   font-family: 'Poppins', sans-serif;
@@ -58,6 +59,21 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 300;
 }
+
+
+.welcomeImgcontainer{
+  display: flex;
+  justify-content: center;
+  margin-left: 2em;
+  margin-top: 1em;
+}
+.welcomeImg{
+width: 30%;
+
+
+}
+
+
 .text-welcome {
   padding-top: 20px;
   font-family: 'Poppins', sans-serif;
@@ -107,6 +123,7 @@
   .text-welcome {
     width: 90%;
     padding-top: 10px;
+    margin-bottom: 1.5em;
   }
 }
 
