@@ -13,9 +13,9 @@ export default function App() {
   return (
     <div>
       <Routes>
-        <Route path="quiz" element={<Quiz />} />
+        <Route path="/quiz" element={<Quiz />} />
         <Route path="/" element={<Home1 />} />
-        <Route path="login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
