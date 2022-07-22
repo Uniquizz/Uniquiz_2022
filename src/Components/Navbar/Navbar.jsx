@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { logOut } from '../../Services/firebase';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import Logo from '../../Images/UNIQUIZ.svg';
+import gif from '../../Images/24OD.gif'
 import PP from '../../Images/ppmock.png';
 
 const Navbar = () =>{
   const [profileActive, setProfileActive] = useState(false);
   const [usuario, setUsuario] = useState(false);
-
   const handleLogOut = (e) => {
     logOut();
   }
@@ -21,6 +21,7 @@ const Navbar = () =>{
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         setUsuario(user);
+
         // ...
       } else {
         // User is signed out
@@ -28,7 +29,6 @@ const Navbar = () =>{
       }
     });
   }, [])
-  
   
     return (
       <div className="navbar_container">
@@ -70,10 +70,8 @@ const Navbar = () =>{
               </Link>
               </button>
           
-
-          
           <div className="navbar_image" onClick={()=>setProfileActive(!profileActive)}>
-            <img className="navbar_img" src={PP} alt="" />
+            <img className="navbar_img" src={usuario ? usuario.photoURL : PP} alt="" />
           </div>
           {profileActive ? (
             <div className="navbar_menu_profile">

@@ -38,6 +38,8 @@
 .navbar_image {
   width: 5%;
   align-self: center;
+  display: grid;
+  place-content: center;
   cursor: pointer;
 }
 .navbar_img {
