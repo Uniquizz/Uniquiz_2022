@@ -28,7 +28,7 @@
 }
 /*Here are the mediaquerys for Hero1 */
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
 .Hero1{
   padding: 1em;
 }
@@ -40,6 +40,7 @@
   padding: 0em 1.5em;
   font-size: 16px;
   margin-bottom: .5rem;
+  margin-top: 5em;
 }
 }
 
@@ -129,10 +130,7 @@
 }
 
 
-h2 {
-  margin-top: -4em;
-  background-color: blue;
-}
+
 
 .item3 {
   grid-row: 2/6;
@@ -164,9 +162,9 @@ transform: rotate(10deg);
 
 .contents3 {
   color: #f2f2f2;
-  margin: 2em;
+ 
   margin-bottom: 0em;
-  padding: 2em;
+
   padding-top: 2em;
   text-align: right;
   font-size: 1.5em;
@@ -196,7 +194,7 @@ h3{
 
 /*Here are the mediaquerys for section3 */
 
-@media (max-width: 400px) {
+@media (max-width: 860px) {
   .section3{
     display: block;
     flex-direction: column;
@@ -214,7 +212,7 @@ h3{
     text-align: center;
     font-size: 18px;
     align-items: center;
-    margin: 0;
+    margin-bottom: em;
 
   }
   .marcian{
@@ -224,8 +222,11 @@ h3{
 
   .bubbly-button{
     margin-top: 1.5em;
-    margin-bottom: 2em;
+    margin-bottom: 3em;
     padding: .5em 3em;
+  }
+  .contents3 p{
+    margin-bottom: 3em;
   }
 
 
@@ -241,6 +242,14 @@ h3{
 
 /*Section 4 "Blog está en cmpt*/
 
+.Blogstitle{
+  color: #f2f2f2;
+  text-align: center;
+  margin-top: 3em;
+  font-size: 2.5em;
+
+}
+
 
 
 /*Here start section5 */
@@ -251,11 +260,16 @@ h3{
   background-color: rgba(255, 0, 132, 0.24);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.175);
-  display: flex;
+  
   color: #f2f2f2;
   padding: 2em;
   margin: 3em 3em 0em 3em;
   box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+}
+
+.metrics5Container{
+  display: flex;
+  justify-content: center;
 }
 
 .items {
@@ -279,13 +293,20 @@ h3{
 }
 
 /*Here are the mediaquerys for section5 */
-@media (max-width: 400px) {
-  .metrics5{
-    display: block;
+@media (max-width: 470px) {
+ .metrics5{
+  margin-top: 4em;
+ }
+
+  .metrics5Container{
+    display: flex;
+    flex-direction: column;
     margin: 1.5em;
-    height: 70vh;
-    align-items: center !important;
-    top: 30px;
+    height: 50vh;
+    align-items: center;
+    
+    
+
   }
   
 }
@@ -294,10 +315,49 @@ h3{
 
 /*Here start section6 */
 
+.containercontents6{
+  margin-bottom: 0em;
+  padding-top: 2em;
+  
+}
+
+
+.contents6{
+  color: #f2f2f2;
+    font-size: 1.5em;
+    text-align: right;
+    align-items: center;
+    
+
+
+}
+.containercontents6 h3{
+  font-size: 2.5em;
+  color: #f2f2f2;
+  text-align: right;
+
+
+}
+
 .section6 {
   display: flex;
   margin-top: 1.5em;
   padding: 3em;
+  gap: 15px;
+}
+.imgs3container{
+  display: flex;
+  align-items: center;
+  max-height: 70vh ;
+  
+}
+.monobandera{
+  width: 100%;
+  height: 100%;
+  margin: 3em 0em;
+  transform: rotate(10deg);
+  object-fit: contain;
+
 }
 
 
@@ -307,13 +367,42 @@ h3{
 /*////*/
 
 /* Mediaquerys Auxiliares */
+@media (max-width: 821px){
 
-@media (max-width: 400px) {
+  .section6{
+    display: block;
+    
+  }
+
+  .monobandera{
+    height: 700px;
+
+  }
+
+  .imgs3container{
+    display: flex;
+    align-items: center;
+    max-height: 70vh ;
+    
+  }
+
+
+
+
+
+ 
+}
+
+
+
+
+
+@media (max-width: 460px) {
  .navbar_container{
    display: none;
  }
  .section6{
-   display: none;
+   display: block;
  }
 
  

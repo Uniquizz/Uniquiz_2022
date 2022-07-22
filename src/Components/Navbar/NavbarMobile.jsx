@@ -4,8 +4,13 @@ import Menupic from '../../Images/menu_icon.png'
 
 import './NavbarMobile.css';
 import React from 'react'
+import { useState } from 'react';
 
 export default function NavbarMobile() {
+
+const [menuActive, setmenuActive] = useState(false);
+
+
   return (
     <div  className='NavbarMobileContainer'>
 
@@ -17,9 +22,8 @@ export default function NavbarMobile() {
 
 
           <div className="containermobile2">
-            <div className='menuiconcontainer'>
+            <div className='menuconcontainer' onClick={()=>setmenuActive(menuActive)}>
             <img  className="menupic" src={Menupic} alt="" />
-
 
             </div>
          
