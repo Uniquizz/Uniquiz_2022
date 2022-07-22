@@ -1,6 +1,9 @@
 import React from 'react';
 import Calamardo from '../../Images/image 15.png';
 import ApexChart from './ApexChart';
+import {  FacebookShareButton,  WhatsappShareButton,   FacebookIcon,
+  WhatsappIcon,} from "react-share";
+ 
 
 class Results extends React.Component {
   render() {
@@ -45,7 +48,42 @@ class Results extends React.Component {
               >
                 Repetir
               </button>
-              <button className="gnr-btn btn-lect">Tomar lecciones</button>
+
+
+                  <div className="socialshare">
+                    <h5 className='SocialSharingTitle'>Compartir</h5>
+
+
+                    <div className="socialbtnscontainer">
+
+                    <FacebookShareButton url={'https://uniquiz.com.mx'} quote={'Preparate gratis para entrar a la uni 🛸​ '}  hashtag={'#UNIQUIZMX'} >
+                  
+                  <FacebookIcon size={35}  round={true}/>
+                </FacebookShareButton>
+
+
+            
+
+            <WhatsappShareButton url={'https://uniquiz.com.mx'} quote={'Preparate gratis para entrar a la uni 🛸​ '}  hashtag={'#UNIQUIZMX'}>
+              <WhatsappIcon size={35} round={true}/>
+
+            </WhatsappShareButton>
+
+
+
+                    </div>
+
+
+                  </div>
+
+            
+               
+                
+
+
+
+
+                 
             </div>
           </div>
         </div>
