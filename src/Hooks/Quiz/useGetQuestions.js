@@ -18,23 +18,25 @@ const useGetQuestions = ({screens, setScreens}) =>{
     const [customQuizOptions, setCustomQuizOptions] = useState({
         numPreguntas: null,
         materia: null,
-        area: null,
+        // area: null,
     });
 
     const [allQuestions, setAllQuestions] = useState({
         questions: [],
-        area: [],
+        // area: [],
         images: [],
         answers: [],
         matters: [],
     })
     const [questionsInfo, setQuestionsInfo] = useState({
         questions: [],
-        area: [],
+        // area: [],
         images: [],
         answers: [],
         matters: [],
     })
+
+    const [messageCustomScreen, setMessageCustomScreen] = useState(undefined);
     const [username, setUsername] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -47,65 +49,75 @@ const useGetQuestions = ({screens, setScreens}) =>{
     };
 
     const handleStart = (e) => {
-        console.log(customQuizOptions.numPreguntas)
         getQuestions(customQuizOptions.numPreguntas, customQuizOptions.materia, customQuizOptions.area);
-        setScreens({
-            cActive: false,
-            qActive: true,
-            rActive: false,
-        });
     };
 
-    const getQuestions = (numPreguntas, materia, area) =>{
-        const questions = []
-        const answers = []
-        const images = []
-        var arrFin = [];
+    //Para area agregar a esta función el paramtero area
+    const getQuestions = (numPreguntas, materia) =>{
+        const tempQuestions ={
+            questions: [],
+            answers: [],
+            images: [],
+            // area: [],
+            matter: [],
+        }
 
-        var indMateria = allQuestions.matters.map((e, i) => e.matter === materia ? i : '').filter(String)
-        var indArea = allQuestions.area.map((e, i) => e.area === area ? i : '').filter(String)
+        var arrFin = allQuestions.matters.map((e, i) => e.matter === materia ? i : '').filter(String)
+        // var indArea = allQuestions.area.map((e, i) => e.area === area ? i : '').filter(String)
 
+        //Funcion de interpolación para area y materia
+        // if(indMateria.length > indArea.length){
+        // indMateria.forEach(el1 => {
+        //     indArea.forEach( el2 => {
+        //         if(el1 == el2){
+        //         arrFin.push(el1)
+        //         }
+        //     })
+        //     })
+        // }
+        // else{
+        // indArea.forEach(el1 => {
+        //     indMateria.forEach( el2 => {
+        //         if(el1 == el2){
+        //             arrFin.push(el1)
+        //             }
+        //         })
+        //     })
+        // }
 
-        if(indMateria.length > indArea.length){
-        indMateria.forEach(el1 => {
-            console.log(el1)
-            indArea.forEach( el2 => {
-                if(el1 == el2){
-                arrFin.push(el1)
-                }
+        console.log(arrFin.length);
+        console.log(numPreguntas);
+        
+        if(arrFin.length > numPreguntas){
+            setMessageCustomScreen(undefined);
+            arrFin.splice(numPreguntas);
+
+            for (let i = arrFin.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arrFin[i], arrFin[j]] = [arrFin[j], arrFin[i]];
+            }
+    
+            arrFin.forEach(el=>{
+                tempQuestions.questions.push(allQuestions.questions[el])
+                tempQuestions.answers.push(allQuestions.answers[el])
+                tempQuestions.images.push(allQuestions.images[el])
+                // tempQuestions.area.push(allQuestions.area[el])
+                tempQuestions.matter.push(allQuestions.matters[el])
             })
-            })
+    
+            setQuestionsInfo(tempQuestions);
+            setMaxQuestions(tempQuestions.questions.length)
+
+            setScreens({
+                cActive: false,
+                qActive: true,
+                rActive: false,
+            });
         }
         else{
-        indArea.forEach(el1 => {
-            indMateria.forEach( el2 => {
-                if(el1 == el2){
-                    arrFin.push(el1)
-                    }
-                })
-            })
+            setMessageCustomScreen("No tenemos suficientes preguntas, prueba con menos");
         }
         
-        arrFin.splice(numPreguntas);
-
-        for (let i = arrFin.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arrFin[i], arrFin[j]] = [arrFin[j], arrFin[i]];
-        }
-        console.log(arrFin);
-
-        arrFin.forEach(el=>{
-            questions.push(allQuestions.questions[el])
-            answers.push(allQuestions.answers[el])
-            images.push(allQuestions.images[el])
-        })
-
-        setQuestionsInfo({
-            questions: questions,
-            answers: answers,
-            images: images,
-        })
-        setMaxQuestions(questions.length)
     }
 
     useEffect(()=>{
@@ -113,14 +125,10 @@ const useGetQuestions = ({screens, setScreens}) =>{
         setLoading(true);
         onAuthStateChanged(auth, (user) => {
             if (user) {
-            console.log(user);
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/firebase.User
-            setUsername(user.displayName);
-            setLoading(false)
-            // ...
+                setUsername(user.displayName);
+                setLoading(false)
             } else {
-            setLoading(false);
+                setLoading(false);
         }
     }, []);
 
@@ -133,7 +141,7 @@ const useGetQuestions = ({screens, setScreens}) =>{
             questions: Object.values(salida.questions),
             answers: Object.values(salida.answers),
             images: Object.values(salida.images),
-            area: Object.values(salida.area),
+            // area: Object.values(salida.area),
             matters: Object.values(salida.matters),
         });
         } else {
@@ -151,7 +159,11 @@ const useGetQuestions = ({screens, setScreens}) =>{
     return{
         handleChange,
         handleStart,
+        messageCustomScreen,
+        setMessageCustomScreen,
         questionsInfo,
+        setQuestionsInfo,
+        setCustomQuizOptions,
         username,
         loading,
         maxQuestions,

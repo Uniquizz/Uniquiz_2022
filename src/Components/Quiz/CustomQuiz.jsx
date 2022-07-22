@@ -1,12 +1,12 @@
 import React from 'react';
 import Select from 'react-select';
 
-const optionsArea = [
-  { value: '1', label: 'Área 1', name: 'area' },
-  { value: '2', label: 'Área 2', name: 'area' },
-  { value: '3', label: 'Área 3', name: 'area' },
-  { value: '4', label: 'Área 4', name: 'area' },
-];
+// const optionsArea = [
+//   { value: '1', label: 'Área 1', name: 'area' },
+//   { value: '2', label: 'Área 2', name: 'area' },
+//   { value: '3', label: 'Área 3', name: 'area' },
+//   { value: '4', label: 'Área 4', name: 'area' },
+// ];
 const optionsMateria = [
   { value: 'Matemáticas', label: 'Matemáticas', name: 'materia' },
   { value: 'Español', label: 'Español y Literatura', name: 'materia' },
@@ -32,16 +32,15 @@ class CustomQuiz extends React.Component {
     super(props);
     this.state = {
       border: '',
-      message: '¡Obten tus resultado en cualquier momento!',
     };
   }
 
   handleClick = (e) => {
-    if (this.props.options.numPreguntas && this.props.options.area && this.props.options.materia) {
+    if (this.props.options.numPreguntas && this.props.options.materia){
       console.log('enviado');
       this.props.onClick();
     } else {
-      this.setState({ message: '¡Proporciona los datos faltantes!' });
+      this.props.setMessageCustomScreen('¡Proporciona los datos faltantes!');
     }
   };
   render() {
@@ -56,12 +55,12 @@ class CustomQuiz extends React.Component {
           </div>
           <div className="row-right-welcome">
             <p>Selecciona tu área</p>
-            <Select
+            {/* <Select
               className="select-area-welcome"
               placeholder="Selecciona tu área"
               options={optionsArea}
               onChange={this.props.onChange}
-            />
+            /> */}
             <p>Escoge tus materias</p>
             <Select
               className="select-area-welcome"
@@ -79,7 +78,7 @@ class CustomQuiz extends React.Component {
             <button onClick={this.handleClick} className="button-welcome">
               Empezar
             </button>
-            <p className="text-welcome">{this.state.message}</p>
+            <p className="text-welcome">{this.props.messageCustomScreen}</p>
           </div>
         </div>
       </>

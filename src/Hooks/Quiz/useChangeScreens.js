@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useChangeScreens = ({maxQuestions, setScreens}) =>{
+const useChangeScreens = ({maxQuestions, setScreens, setQuestionsInfo, setCustomQuizOptions}) =>{
 
     const [questionCount, setQuestionCount] = useState(1);
     const [answerCounter, setAnswerCounter] = useState(0);
@@ -22,6 +22,17 @@ const useChangeScreens = ({maxQuestions, setScreens}) =>{
             qActive: false,
             rActive: false,
         });
+        setQuestionsInfo({
+          questions: [],
+          // area: [],
+          images: [],
+          answers: [],
+          matters: [],
+        });
+        setCustomQuizOptions({
+          numPreguntas: null,
+          materia: null,
+        })
         setQuestionCount(1);
         setCorrect(undefined);
     };

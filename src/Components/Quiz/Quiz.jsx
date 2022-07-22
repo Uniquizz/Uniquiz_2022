@@ -24,6 +24,10 @@ const Quiz = () => {
     maxQuestions,
     customQuizOptions,
     questionsInfo,
+    setQuestionsInfo,
+    setCustomQuizOptions,
+    messageCustomScreen,
+    setMessageCustomScreen
   } = useGetQuestions({screens, setScreens});
 
   const { 
@@ -36,8 +40,10 @@ const Quiz = () => {
     questionCount,
     correct,
     answerCounter,
-   } = useChangeScreens({maxQuestions, setScreens});
+   } = useChangeScreens({maxQuestions, setScreens, setQuestionsInfo, setCustomQuizOptions});
 
+
+   console.log(questionsInfo);
   return (
     <>
       {!loading && !username && (
@@ -60,7 +66,9 @@ const Quiz = () => {
               onChange={handleChange} 
               options={customQuizOptions} 
               username={username} 
-              onClick={handleStart} 
+              onClick={handleStart}
+              messageCustomScreen = {messageCustomScreen}
+              setMessageCustomScreen = {setMessageCustomScreen}
             />
           ) : !screens.cActive &
             screens.qActive &
