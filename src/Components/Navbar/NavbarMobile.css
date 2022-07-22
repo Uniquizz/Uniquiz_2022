@@ -13,7 +13,7 @@
 
 .navbar_logo_container{
     padding: .5em 0em ;
-    width: 20px;
+    
 }
 
 
@@ -24,5 +24,28 @@
 .menupic{
     width: 32px;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1em;
+    padding-right: 1em;
+
 
 }
+
+@media only screen and (min-width: 820px) {
+    .NavbarMobileContainer{
+        display: none;
+    }
+  }
+
+
+  @media only screen and (max-width: 460px) {
+ .navbar_logo{
+    width: 160px;
+ }
+
+ .menupic{
+    padding-top: 1.2em;
+ }
+  }  

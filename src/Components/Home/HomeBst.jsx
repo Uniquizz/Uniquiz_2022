@@ -119,6 +119,7 @@ class Home extends React.Component {
           
 
           <div className="metrics5">
+            <div className="metrics5Container">
             <div className="items">
               <p className="ps5">+1000</p>
               <h4 className="hs5">Usuarios Registrados</h4>
@@ -133,19 +134,35 @@ class Home extends React.Component {
               <p className="ps5">+1000</p>
               <h4 className="hs5">Usuarios Registrados</h4>
             </div>
+
+            </div>
+          
           </div>
+
+          <h2 className='Blogstitle'>Noticias</h2>
           <Blog></Blog>
 
           <div className="section6">
 
-            <p className="contents3">
-          <h3>"Un gran paso para el hombre..."</h3>
-              Aterriza en la universidad de tus sueños
+            <div className="containercontents6">
+          <h3 className=''>"Un gran paso para el hombre..."</h3>
+
+          
+          <p className="contents6">
+          Aterriza en la universidad de tus sueños
               <br /> Estudia con nosotros de la forma más practica 
              totalmente gratis{' '}
-            </p>
 
-            <img src={Mono} className="marcian" alt="" />
+          </p>
+             
+            </div>
+
+
+              <div className='imgs3container'>
+              <img src={Mono} className="monobandera" alt="" />
+
+
+              </div>
           </div>
         </div>
         

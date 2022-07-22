@@ -1,11 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+
 .sec4container{
   display: grid;
   padding: 1em;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 25px;
-  margin-top: 5.5em;
+ 
 }
 
 .cardbg{
