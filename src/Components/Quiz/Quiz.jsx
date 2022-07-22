@@ -7,6 +7,7 @@ import './Styles.css';
 import { Navigate } from 'react-router-dom';
 import useChangeScreens from '../../Hooks/Quiz/useChangeScreens';
 import useGetQuestions from '../../Hooks/Quiz/useGetQuestions';
+import NavbarMobile from '../Navbar/NavbarMobile'
 
 const Quiz = () => {
 
@@ -46,10 +47,11 @@ const Quiz = () => {
    console.log(questionsInfo);
   return (
     <>
-      {!loading && !username && (
+      {!loading && !username && (<>
         <Navigate to="/login" replace={true} />
+        </>
       )}
-      {screens.qActive || screens.rActive ? null : <Navbar />}
+      {screens.qActive || screens.rActive ? null : <><Navbar /><NavbarMobile/></>}
       <div className="main-welcome">
         {screens.qActive || screens.rActive ? (
           <h1 className="title-welcome-nopad">

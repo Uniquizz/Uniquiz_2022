@@ -12,7 +12,7 @@
 }
 
 .main-card {
-  width: 100%;
+  width: 80%;
   max-width: 1600px;
   padding-bottom: 25px;
 }
@@ -22,7 +22,7 @@
   color: #ffffff;
   text-align: center;
   padding-top: 70px;
-  font-size: 8vh;
+  font-size: 50px;
   font-weight: 300;
   text-transform: uppercase;
 }
@@ -73,9 +73,8 @@
   margin-top: 1em;
 }
 .welcomeImg{
-width: 30%;
-
-
+  width: 30%;
+  padding-bottom: 2em;
 }
 
 
@@ -86,6 +85,7 @@ width: 30%;
   font-weight: 300;
   width: 40%;
   text-align: center;
+  padding-bottom: 2em;
 }
 
 .row-right-welcome {
@@ -96,7 +96,10 @@ width: 30%;
   align-items: center;
   color: #f2f2f2;
 }
-
+.row-right-welcome p{
+  font-size: 17px;
+  padding: 10px 0;
+}
 .select-area-welcome {
   width: 300px;
   color: #19011d;
@@ -123,6 +126,9 @@ width: 30%;
     width: 100%;
   }
   .row-right-welcome {
+    width: 100%;
+  }
+  .row-right-welcome > div{
     width: 100%;
   }
   .text-welcome {

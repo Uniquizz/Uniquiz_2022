@@ -60,7 +60,7 @@ class CustomQuiz extends React.Component {
             </p>
           </div>
           <div className="row-right-welcome">
-            <p>Selecciona tu área</p>
+            {/* <p>Selecciona tu área</p> */}
             {/* <Select
               className="select-area-welcome"
               placeholder="Selecciona tu área"
