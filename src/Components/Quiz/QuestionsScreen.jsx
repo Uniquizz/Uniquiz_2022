@@ -3,55 +3,22 @@ import Questions from './Questions';
 import Img from '../../Images/example.png';
 import Loading from '../Auxiliar/Loading';
 
-export const randomizeQuiestions = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
 
 const QuestionsScreen = (props) => {
 
   const { username,
-    onClickCheck,
-    styleInfo,
+    handleSetCorrect,
     questions,
     answers,
+    nextDisabled,
+    setNextDisabled,
     images,
     onClickResults,
     onClickNext,
-    questionCount,
   } = props
 
   const [ minutes, setMinutes ] = useState(0);
-  const [seconds, setSeconds ] =  useState(0);
-  const [ randomArr, setRandomArr ] = useState([
-    {
-      answer: answers.ans1,
-      style: styleInfo.styleAns1,
-      button: styleInfo.buttonDisabled,
-      ind: 1,
-    },
-    {
-      answer: answers.ans2,
-      style: styleInfo.styleAns2,
-      button: styleInfo.buttonDisabled,
-      ind: 2,
-    },
-    {
-      answer: answers.ans3,
-      style: styleInfo.styleAns3,
-      button: styleInfo.buttonDisabled,
-      ind: 3,
-    },
-    {
-      answer: answers.ans4,
-      style: styleInfo.styleAns4,
-      button: styleInfo.buttonDisabled,
-      ind: 4,
-    },
-  ]);
+  const [ seconds, setSeconds ] =  useState(0);
 
   useEffect(()=>{
   let myInterval = setInterval(() => {
@@ -65,16 +32,6 @@ const QuestionsScreen = (props) => {
           clearInterval(myInterval);
         };
   });
-
-  useEffect(()=>{
-    
-
-  }, [onClickCheck]);
-
-  useEffect(()=>{
-    console.log(questionCount)
-    setRandomArr(()=>randomizeQuiestions(randomArr))
-  }, [questionCount])
 
 
   return (
@@ -90,10 +47,13 @@ const QuestionsScreen = (props) => {
         </div>
         {images.image && <img src={Img} alt="" className="image-question" />}
       </div>
-      <Questions
-        answers={randomArr}
-        onClickCheck={onClickCheck}
-      />
+      <div className='container-answers'>
+        <Questions
+          answers={answers}
+          handleSetCorrect={handleSetCorrect}
+          setNextDisabled={setNextDisabled}
+        />
+      </div>
       <div className="container-buttons">
         <button
           onClick={onClickResults}
@@ -101,7 +61,7 @@ const QuestionsScreen = (props) => {
         >
           Resultados
         </button>
-        <button onClick={onClickNext} className="gnr-btn btn-next">
+        <button onClick={onClickNext} className={`${nextDisabled ? "btn-next-disabled" : "btn-next"} gnr-btn `}>
           Siguiente
         </button>
       </div>

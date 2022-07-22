@@ -174,8 +174,12 @@
 }
 
 .container-answers {
-  display: flex;
-  justify-content: center;
+  margin: auto;
+  width: 70%;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
 .row-left-ans {
@@ -187,7 +191,7 @@
 }
 
 .container-ans {
-  width: 95%;
+  width: 100%;
   margin-top: 30px;
   border-radius: 20px;
   border: 2px solid #f2f2f2;
@@ -224,16 +228,26 @@
   padding-right: 8%;
   padding-top: 10px;
   padding-bottom: 10px;
+  cursor: pointer;
 }
 
 .btn-next {
+  cursor: pointer;
   border-radius: 10px;
   border: 2px solid #15eb59;
 }
 
 .btn-res {
+  cursor: pointer;
   border-radius: 10px;
   border: 2px solid #3399bb;
+}
+
+.btn-next-disabled{
+  cursor: default;
+  border-radius: 10px;
+  background: #4e4e4e;
+  border: 2px solid #8a8a8a;
 }
 
 @media screen and (max-width: 500px) {
